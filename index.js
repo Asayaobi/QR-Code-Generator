@@ -16,5 +16,10 @@ inquirer.prompt([
         let qr_image = qr.image(answer.website, { type: "png" })
 //Save the QR Code Image
         qr_image.pipe(fs.createWriteStream(`${answer.website}_qr_code.png`))
-    })
 
+//create a text file to save the user input using fs native
+        fs.writeFile(`${answer.website}.txt`, answer.website, (err) => {
+            if (err) throw err
+            console.log("The file has been saved.")
+        })
+    })
